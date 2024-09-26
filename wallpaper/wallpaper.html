@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <style type="text/css">
+        p
+        {
+            color:red;
+        }
+        body{
+            display:flex;
+            align-items: center;
+            justify-content:center;
+            background-color:black;
+        }
+    </style>
+
+</head>
+
+<body>
+<script type="text/javascript">
+    // var pa=document.createElement("p");
+    // var node=document.createTextNode("天气");
+    // pa.appendChild(node);
+    //
+    // document.body.appendChild(pa);
+    //
+    // document.write("<p>dfdsf</p>");
+    var text; //用于接收text
+    var xhr = new XMLHttpRequest();
+    xhr.responseType="json";
+    var url = "https://restapi.amap.com/v3/weather/weatherInfo?city=610103&key=c6e6544595fcc8ed5c1a5d5d29600e16";
+    // xhr.responseType ="json";
+    xhr.open('get',url);
+
+    // 第一种实现
+    xhr.onreadystatechange=function(){
+        if (xhr.readyState=== 4 && xhr.status === 200){
+            // var xhrj = eval('(' + xhr.responseText + ')');
+            var xhrjson=xhr.response.lives[0];
+            var province = xhrjson.province;
+            var city = xhrjson.city;
+            var weather =xhrjson.weather;
+            addElement(province);
+            addElement(city);
+            addElement(weather);
+
+        }
+    }
+
+    xhr.send();
+
+//第二种方法没有实现
+// xhr.addEventListener("onload",getWeatherText(addElement));
+// function getWeatherText(callback)
+// {
+//         var xhrj = eval('(' + xhr.responseText + ')');
+//         text = xhrj.lives[0].province;
+//         callback(text);
+// }
+function addElement(text) {
+    var weatherNode = document.createElement("p");
+    document.body.appendChild(weatherNode);
+    var weatherTextNode = document.createTextNode(text);
+    weatherNode.appendChild(weatherTextNode);
+}
+</script>
+
+</body>
+</html>
