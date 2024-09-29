@@ -3,9 +3,23 @@
     <meta charset="utf-8">
 
     <style type="text/css">
+        @keyframes pp {
+            from {font-size:1em;color:black;}
+            to {font-size:3em;color:green;}
+        }
         p
         {
-            color:red;
+            /*color:red;*/
+            /*font-size:3em;*/
+            animation-name:pp;
+            animation-duration:5s;
+            animation-play-state: running;
+            animation-timing-function:linear;
+            animation-iteration-count: infinite;
+
+        }
+        p:hover{
+            animation-play-state: paused;
         }
         body{
             display:flex;
